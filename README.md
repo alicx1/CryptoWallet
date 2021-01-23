@@ -9,7 +9,7 @@ C'est une application front end en JavaScript qui utilise le pattern [SAM](https
 
 #### English
 
-This project was done during my second year in University.
+This project was done during my second year at University.
 It's a wallet for crypto currency.
 
 It's a front-end app developed in JavaScript that uses the [SAM](https://sam.js.org/) (action, model, state, view) pattern and a public API [CoinLayer](https://coinlayer.com/).
