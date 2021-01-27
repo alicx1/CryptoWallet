@@ -61,19 +61,16 @@ model = {
 
       case 'filtreTexte': {
         this.ui.currenciesCard.tabs.cryptos.filters.text=data.x;
-        this.ui.currenciesCard.tabs.cryptos.pagination.currentPage = 1;
         this.hasChanged.cryptos.filter = true;
       } break;
 
       case 'filtreNombre': {
         this.ui.currenciesCard.tabs.cryptos.filters.price=data.x;
-        this.ui.currenciesCard.tabs.cryptos.pagination.currentPage = 1;
         this.hasChanged.cryptos.filter = true;
       } break;
 
       case 'changeDevise': {
         this.ui.currenciesCard.tabs.fiats.filters.text=data.x;
-        this.ui.currenciesCard.tabs.fiats.pagination.currentPage = 1;
         this.hasChanged.fiats.filter = true;
       } break;
 
@@ -119,8 +116,7 @@ model = {
 
             for (let i = 0; i<porto.length; i++) {
               //Si quantité =0
-              var quantityNew = eval("model.config.coins." + porto[i] + ".quantityNew");
-              if (quantityNew === 0) {
+              if (eval("model.config.coins." + porto[i] + ".quantityNew") === 0) {
                 //on ajoute aux ajouter.
                 state.data.coins.nullValueCodes.push(porto[i]);
                 state.data.coins.nullValueCodes.sort();
@@ -135,7 +131,7 @@ model = {
                 }
 
                 //Sinon on met à jour
-              else if ((quantityNew > 0 ) && !(isNaN(quantityNew))) {
+              else if (!(eval("model.config.coins." + porto[i] + ".quantityNew") == ``)) {
                 model.config.coins[porto[i]].quantity = model.config.coins[porto[i]].quantityNew;
                 model.config.coins[porto[i]].quantityNew = "";
 
@@ -160,8 +156,7 @@ model = {
 
             for (var i = 0; i<ajout.length; i++) {
               //on met dans le portofolio
-              var quantityNew = eval("model.config.coins." + ajout[i] + ".quantityNew");
-              if ((quantityNew > 0 ) && !(isNaN(quantityNew))) {
+              if (!(eval("model.config.coins." + ajout[i] + ".quantityNew") === "")) {
                 state.data.coins.posValueCodes.push(ajout[i]);
                 state.data.coins.posValueCodes.sort();
                 model.config.coins[ajout[i]].quantity = model.config.coins[ajout[i]].quantityNew;
@@ -186,7 +181,6 @@ model = {
               }
           }break;
           case 'sort': {
-          this.ui.currenciesCard.tabs[data.currency].pagination.currentPage = 1;
           this.ui.currenciesCard.tabs[data.currency].sort.column = data.column;
           this.hasChanged[data.currency].sort = true;
           this.ui.currenciesCard.tabs[data.currency].sort.incOrder[data.column] = !this.ui.currenciesCard.tabs[data.currency].sort.incOrder[data.column];
@@ -198,7 +192,6 @@ model = {
           case 'changeRowsPerPage': {
             this.ui.currenciesCard.tabs[data.currency].pagination.rowsPerPageIndex = data.e.target.value;
             this.hasChanged[data.currency].pagination = true;
-            this.ui.currenciesCard.tabs[data.currency].pagination.currentPage = 1;
           }break;
       // TODO: ajoutez des cas répondant à vos actions...
 

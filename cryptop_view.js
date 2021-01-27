@@ -83,14 +83,15 @@ view = {
     const rowsPerPageIndex = model.ui.currenciesCard.tabs.cryptos.pagination.rowsPerPageIndex;
     const currentPage = model.ui.currenciesCard.tabs.cryptos.pagination.currentPage;
     const rowsPerPageActive = rowsPerPage[rowsPerPageIndex];
-    const debut = (currentPage * rowsPerPageActive - rowsPerPageActive);
+    const debut = (currentPage * rowsPerPageActive - rowsPerPageActive) + 1;
+    var fin = 0;
     if ((debut+rowsPerPageActive) <= state.data.cryptos.filtered.length) {
-      var fin = debut+rowsPerPageActive;
+      fin = debut+rowsPerPageActive;
     }
     else {
       fin = state.data.cryptos.filtered.length;
     }
-    const tabProv = state.data.cryptos.filtered.slice(debut,fin);
+    const tabProv = state.data.cryptos.filtered.slice(debut-1,fin);
 
     return `
     <div class="card border-secondary" id="currencies">
@@ -220,7 +221,7 @@ view = {
     const rowsPerPageIndex = model.ui.currenciesCard.tabs.fiats.pagination.rowsPerPageIndex;
     const currentPage = model.ui.currenciesCard.tabs.fiats.pagination.currentPage;
     const rowsPerPageActive = rowsPerPage[rowsPerPageIndex];
-    const debut = (currentPage * rowsPerPageActive - rowsPerPageActive);
+    const debut = (currentPage * rowsPerPageActive - rowsPerPageActive) + 1;
     var fin = 0;
     if ((debut+rowsPerPageActive) <= state.data.fiats.filtered.length) {
       fin = debut+rowsPerPageActive;
@@ -228,7 +229,7 @@ view = {
     else {
       fin = state.data.fiats.filtered.length;
     }
-    const tabProv = state.data.fiats.filtered.slice(debut,fin);
+    const tabProv = state.data.fiats.filtered.slice(debut-1,fin);
 ;
 
     return `
